@@ -5,11 +5,11 @@
 
 static void mostrar_menu(void) {
     printf("\n=== SIMULADOR MISION ARTEMIS: REINGRESO ATMOSFERICO ===\n");
-    printf("1. Ingresar parametros de simulacion\n");
-    printf("2. Calcular trabajo de rozamiento\n");
-    printf("3. Calcular desaceleracion media\n");
-    printf("4. Calcular fuerza de impacto\n");
-    printf("5. Analizar angulo de reingreso\n");
+    printf("1. Ingresar los parametros de simulacion\n");
+    printf("2. Calcular el trabajo de rozamiento\n");
+    printf("3. Calcular la desaceleracion media\n");
+    printf("4. Calcular la fuerza de impacto\n");
+    printf("5. Analizar el angulo de reingreso\n");
     printf("6. Salir\n");
 }
 
