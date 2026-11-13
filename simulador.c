@@ -22,3 +22,18 @@ void calcular_desaceleracion_media(float delta_t) {
     printf("Desaceleracion: %.2f m/s^2\n", desaceleracion);
     printf("Equivalente en fuerzas G: %.2f G\n", fuerzas_g);
 }
+
+void calcular_fuerza_impacto(float d) {
+    if (d <= 0) {
+        printf("Error: la profundidad de hundimiento debe ser mayor a 0.\n");
+        return;
+    }
+
+    double energia_cinetica = 0.5 * MASA_ORION * VEL_IMPACTO * VEL_IMPACTO;
+    double fuerza_frenado = energia_cinetica / d;
+    double fuerza_total = fuerza_frenado + (MASA_ORION * GRAVEDAD);
+
+    printf("\n--- FUERZA DE IMPACTO EN EL AGUA ---\n");
+    printf("Fuerza media de frenado: %.2f N\n", fuerza_frenado);
+    printf("Fuerza total soportada (con peso): %.2f N\n", fuerza_total);
+}
