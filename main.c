@@ -1,50 +1,56 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 #include "simulador.h"
 #include "validaciones.h"
 
-int main() {
+static void mostrar_menu(void) {
+    printf("\n=== SIMULADOR MISION ARTEMIS: REINGRESO ATMOSFERICO ===\n");
+    printf("1. Ingresar parametros de simulacion\n");
+    printf("2. Calcular trabajo de rozamiento\n");
+    printf("3. Calcular desaceleracion media\n");
+    printf("4. Calcular fuerza de impacto\n");
+    printf("5. Analizar angulo de reingreso\n");
+    printf("6. Salir\n");
+}
+
+int main(void) {
+    ParametrosSimulacion params;
+    int datos_cargados = 0;
     int opcion;
-    ParametrosSimulacion params; 
+
+    cargar_valores_por_defecto(&params);
 
     do {
-        printf("\n=== SIMULADOR MISION ARTEMIS: REINGRESO ATMOSFERICO ===\n");
-        printf("1. Ingresar parametros de simulacion\n");
-        printf("2. Calcular Trabajo de Rozamiento\n");
-        printf("3. Calcular Desaceleracion Media\n");
-        printf("4. Calcular Fuerza de Impacto\n");
-        printf("5. Analizar Angulo de Reingreso\n");
-        printf("6. Salir\n");
-        printf("Ingrese una opcion: ");
-        
-      
-        scanf("%d", &opcion); 
+        mostrar_menu();
+        opcion = leer_entero_seguro("Ingrese una opcion (1-6): ", 1, 6);
 
-        switch(opcion) {
+        if (opcion >= 2 && opcion <= 5 && !datos_cargados) {
+            printf("Aviso: primero cargue los parametros (opcion 1).\n");
+            continue;
+        }
+
+        switch (opcion) {
             case 1:
-                printf("Ingresando datos...\n");
-                // Pedir datos al usuario
+                ingresar_parametros(&params);
+                datos_cargados = 1;
                 break;
             case 2:
-                // Llamar a calcular_trabajo_rozamiento(...)
+                mostrar_trabajo_rozamiento(&params);
                 break;
             case 3:
-                // Llamar a calcular_y_mostrar_desaceleracion(...)
+                calcular_y_mostrar_desaceleracion(&params);
                 break;
             case 4:
-                // Llamar a calcular_y_mostrar_impacto(...)
+                calcular_y_mostrar_impacto(&params);
                 break;
             case 5:
-                // Llamar a analizar_angulo_reingreso(...)
+                analizar_angulo_reingreso(&params);
                 break;
             case 6:
                 printf("Saliendo del simulador...\n");
                 break;
-            default:
-                printf("Opcion invalida. Intente nuevamente.\n");
         }
-    } while(opcion != 6);
+    } while (opcion != 6);
 
     return 0;
 }
