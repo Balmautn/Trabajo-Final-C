@@ -37,3 +37,23 @@ void calcular_fuerza_impacto(float d) {
     printf("Fuerza media de frenado: %.2f N\n", fuerza_frenado);
     printf("Fuerza total soportada (con peso): %.2f N\n", fuerza_total);
 }
+
+void analizar_angulo_reingreso(float angulo) {
+    const double PI = 3.14159265358979323846;
+    double radianes = angulo * (PI / 180.0);
+    double vel_horizontal = VEL_INICIAL * cos(radianes);
+    double vel_vertical = VEL_INICIAL * sin(radianes);
+
+    printf("\n--- ANALISIS DEL ANGULO DE REINGRESO ---\n");
+    printf("Angulo ingresado: %.2f grados\n", angulo);
+    printf("Componente horizontal de velocidad: %.2f m/s\n", vel_horizontal);
+    printf("Componente vertical de descenso: %.2f m/s\n", vel_vertical);
+
+    if (angulo < 5.5f) {
+        printf("Estado: PELIGRO DE REBOTE. El angulo es muy bajo y la capsula podria rebotar en la atmosfera hacia el espacio.\n");
+    } else if (angulo > 7.5f) {
+        printf("Estado: PELIGRO TERMICO Y DE G. El angulo es muy pronunciado; riesgo de sobrecalentamiento y fuerzas G criticas.\n");
+    } else {
+        printf("Estado: OPTIMO. La capsula ingresa dentro del corredor seguro de reingreso (5.5 a 7.5 grados).\n");
+    }
+}
